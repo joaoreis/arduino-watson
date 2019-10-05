@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Arduino Watson</string>
+    <string name="gravar">Gravar</string>
+    <string name="saySomething">Diga alguma coisa!</string>
 </resources>
