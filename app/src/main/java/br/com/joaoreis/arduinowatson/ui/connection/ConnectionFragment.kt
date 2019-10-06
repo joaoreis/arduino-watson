@@ -21,7 +21,7 @@ class ConnectionFragment : Fragment() {
     ): View? {
         connectionViewModel =
             ViewModelProviders.of(this).get(ConnectionViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_connection, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         connectionViewModel.text.observe(this, Observer {
             textView.text = it
