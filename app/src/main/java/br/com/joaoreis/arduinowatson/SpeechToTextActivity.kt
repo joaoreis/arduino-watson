@@ -6,17 +6,17 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import br.com.joaoreis.arduinowatson.databinding.ActivityMainBinding
+import br.com.joaoreis.arduinowatson.databinding.ActivitySpeechToTextBinding
 
 private const val SPEECH_REQUEST_CODE = 0
 
-class MainActivity : AppCompatActivity() {
+class SpeechToTextActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySpeechToTextBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_speech_to_text)
         setupListeners()
     }
 
