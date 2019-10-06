@@ -8,11 +8,12 @@
         android:layout_height="match_parent"
         tools:context=".SpeechToTextActivity">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_texto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/saySomething"
+            android:textAppearance="@color/material_on_primary_emphasis_medium"
             app:layout_constraintBottom_toTopOf="@+id/bt_gravar"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

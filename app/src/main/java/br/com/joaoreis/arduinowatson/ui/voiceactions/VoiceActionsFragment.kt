@@ -1,4 +1,4 @@
-package br.com.joaoreis.arduinowatson.ui.dashboard
+package br.com.joaoreis.arduinowatson.ui.voiceactions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import br.com.joaoreis.arduinowatson.R
 
-class DashboardFragment : Fragment() {
+class VoiceActionsFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var voiceActionsViewModel: VoiceActionsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        voiceActionsViewModel =
+            ViewModelProviders.of(this).get(VoiceActionsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_voice_actions, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        voiceActionsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

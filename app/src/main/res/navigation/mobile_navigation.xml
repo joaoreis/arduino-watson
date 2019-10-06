@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="br.com.joaoreis.arduinowatson.ui.dashboard.DashboardFragment"
+        android:name="br.com.joaoreis.arduinowatson.ui.voiceactions.VoiceActionsFragment"
         android:label="@string/title_commands"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_voice_actions" />
 
  </navigation>
