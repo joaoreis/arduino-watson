@@ -7,7 +7,6 @@ import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -35,7 +34,7 @@ class VoiceActionsFragment : Fragment() {
             false
         )
         setupObservers(binding.textDashboard)
-        setupListener(binding.btGravar)
+        setupListeners(binding)
 
         return binding.root
     }
@@ -46,8 +45,12 @@ class VoiceActionsFragment : Fragment() {
         })
     }
 
-    private fun setupListener(btGravar: ImageView) {
-        btGravar.setOnClickListener {
+    private fun setupListeners(binding: FragmentVoiceActionsBinding) {
+        binding.btGravar.setOnClickListener {
+            displaySpeechRecognizer()
+        }
+
+        binding.gravar.setOnClickListener {
             displaySpeechRecognizer()
         }
     }
