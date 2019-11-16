@@ -6,9 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.joaoreis.arduinowatson.databinding.DeviceItemBinding
 import br.com.joaoreis.arduinowatson.model.Device
 
-class DeviceAdapter : RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
-
-    private lateinit var devices: List<Device>
+class DeviceAdapter(private val devices: MutableList<Device>) :
+    RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -16,9 +15,7 @@ class DeviceAdapter : RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
         return DeviceViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return devices.size
-    }
+    override fun getItemCount() = devices.size
 
     override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
         val device = devices[position]
@@ -26,7 +23,7 @@ class DeviceAdapter : RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
     }
 
     class DeviceViewHolder(private val binding: DeviceItemBinding) :
-        RecyclerView.ViewHolder(binding.imageView) {
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(device: Device) {
             binding.device = device
         }
