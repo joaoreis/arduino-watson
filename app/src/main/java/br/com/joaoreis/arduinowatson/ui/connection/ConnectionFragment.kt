@@ -25,10 +25,10 @@ class ConnectionFragment : Fragment(), BluetoothHelperListener {
     private lateinit var binding: FragmentConnectionBinding
     private lateinit var bluetoothHelper: BluetoothHelper
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-////        setupBluetooth()
-//    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupBluetooth()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,13 +61,6 @@ class ConnectionFragment : Fragment(), BluetoothHelperListener {
                 )
             )
         }
-        devices.add(Device("1", "meumac"))
-//        devices.add(Device("2", "meumac"))
-//        devices.add(Device("3", "02:b3"))
-//        devices.add(Device("4", "4"))
-//        devices.add(Device("5", "5"))
-//        devices.add(Device("6", "66666666"))
-//        devices.add(Device("7", "77777777"))
     }
 
 
@@ -79,8 +72,8 @@ class ConnectionFragment : Fragment(), BluetoothHelperListener {
 
     private fun setupListener(binding: FragmentConnectionBinding) {
         binding.btPesquisar.setOnClickListener {
-            //            onStartDiscovery()
-//            bluetoothHelper.startDiscovery()
+                        onStartDiscovery()
+            bluetoothHelper.startDiscovery()
         }
     }
 
@@ -102,12 +95,12 @@ class ConnectionFragment : Fragment(), BluetoothHelperListener {
         binding.textHome.visibility = View.VISIBLE
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        bluetoothHelper.registerBluetoothStateChanged()
-//    }
-//    override fun onPause() {
-//        super.onPause()
-//        bluetoothHelper.unregisterBluetoothStateChanged()
-//    }
+    override fun onResume() {
+        super.onResume()
+        bluetoothHelper.registerBluetoothStateChanged()
+    }
+    override fun onPause() {
+        super.onPause()
+        bluetoothHelper.unregisterBluetoothStateChanged()
+    }
 }
