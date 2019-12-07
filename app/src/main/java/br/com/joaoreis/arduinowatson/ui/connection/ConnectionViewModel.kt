@@ -8,4 +8,10 @@ class ConnectionViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>()
     val text: LiveData<String> = _text
+
+    private val _isConnected = MutableLiveData<Boolean>()
+    val isConnected = _isConnected
+
+
+
 }

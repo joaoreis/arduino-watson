@@ -12,23 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.joaoreis.arduinowatson.R
 import br.com.joaoreis.arduinowatson.databinding.FragmentConnectionBinding
 import br.com.joaoreis.arduinowatson.model.Device
-import c.tlgbltcn.library.BluetoothHelper
-import c.tlgbltcn.library.BluetoothHelperListener
+import com.sirvar.bluetoothkit.BluetoothKit
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ConnectionFragment : Fragment(), BluetoothHelperListener {
+class ConnectionFragment : Fragment() {
 
     private val viewModel: ConnectionViewModel by viewModel()
     private val devices = mutableListOf<Device>()
-    private val deviceAdapter = DeviceAdapter(devices)
+    private val bluetoothDevices = mutableListOf<BluetoothDevice>()
+    private val deviceAdapter = DeviceAdapter(devices, bluetoothDevices)
 
     private lateinit var binding: FragmentConnectionBinding
-    private lateinit var bluetoothHelper: BluetoothHelper
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setupBluetooth()
-    }
+    private val bluetoothKit = BluetoothKit()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,8 +42,17 @@ class ConnectionFragment : Fragment(), BluetoothHelperListener {
         setupViews()
         setupBluetooth()
         setupListener(binding)
+        setupPairedDevices()
 
         return binding.root
+    }
+
+    private fun setupPairedDevices() {
+        bluetoothKit.pairedDevices.forEach {
+            bluetoothDevices.add(it)
+            devices.add(Device(it.name, it.address))
+
+        }
     }
 
     private fun setupViews() {
@@ -61,46 +65,20 @@ class ConnectionFragment : Fragment(), BluetoothHelperListener {
                 )
             )
         }
+
     }
 
 
     private fun setupBluetooth() {
-        bluetoothHelper = BluetoothHelper(requireContext(), this)
-            .setPermissionRequired(true)
-            .create()
+        if (!bluetoothKit.isEnabled) {
+            bluetoothKit.enable()
+        }
     }
 
     private fun setupListener(binding: FragmentConnectionBinding) {
         binding.btPesquisar.setOnClickListener {
-                        onStartDiscovery()
-            bluetoothHelper.startDiscovery()
+            bluetoothKit.bluetoothAdapter.startDiscovery()
         }
     }
 
-    override fun getBluetoothDeviceList(device: BluetoothDevice) {
-        devices.add(Device(device.name, device.address))
-        deviceAdapter.notifyDataSetChanged()
-    }
-
-    override fun onDisabledBluetooh() {
-    }
-
-    override fun onEnabledBluetooth() {
-    }
-
-    override fun onFinishDiscovery() {
-    }
-
-    override fun onStartDiscovery() {
-        binding.textHome.visibility = View.VISIBLE
-    }
-
-    override fun onResume() {
-        super.onResume()
-        bluetoothHelper.registerBluetoothStateChanged()
-    }
-    override fun onPause() {
-        super.onPause()
-        bluetoothHelper.unregisterBluetoothStateChanged()
-    }
 }

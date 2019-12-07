@@ -90,5 +90,6 @@ dependencies {
 
     // Bluetooth helper lib
     implementation 'com.github.tlgbltcn:BluetoothHelper:v1.0'
+    implementation 'com.github.sirvar:bluetoothkit-android:v0.3'
 
 }
