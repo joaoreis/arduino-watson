@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="br.com.joaoreis.arduinowatson.ui.connection.ConnectionFragment"
         android:label="@string/title_connection"
-        tools:layout="@layout/fragment_connection" />
+        tools:layout="@layout/fragment_connection" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"

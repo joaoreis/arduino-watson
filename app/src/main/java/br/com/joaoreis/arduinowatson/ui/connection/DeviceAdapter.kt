@@ -1,14 +1,22 @@
 package br.com.joaoreis.arduinowatson.ui.connection
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothDevice.*
+import android.content.DialogInterface
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import br.com.joaoreis.arduinowatson.R
 import br.com.joaoreis.arduinowatson.databinding.DeviceItemBinding
 import br.com.joaoreis.arduinowatson.model.Device
+import br.com.joaoreis.arduinowatson.ui.voiceactions.VoiceActionsFragment
 import com.sirvar.bluetoothkit.BluetoothKit
 
 class DeviceAdapter(
@@ -41,6 +49,7 @@ class DeviceAdapter(
 
         private val bluetoothKit = BluetoothKit()
 
+
         fun bind(device: Device) {
             binding.device = device
             binding.deviceLayout.setOnClickListener(this)
@@ -50,11 +59,14 @@ class DeviceAdapter(
             val device = bluetoothDevices[adapterPosition]
             Toast.makeText(item.context, "Conectando a ${device.name}", Toast.LENGTH_SHORT).show()
 
-            when (device.bondState) {
-                BOND_NONE -> bluetoothKit.connect(device)
-                BOND_BONDING -> return
-                BOND_BONDED ->  Toast.makeText(item.context, "Conectado!", Toast.LENGTH_SHORT).show()
-            }
+            Handler().postDelayed({
+                val builder = AlertDialog.Builder(item.context)
+                builder.setMessage("Conectado!")
+                    .setPositiveButton("Ok") { dialogInterface, _ ->
+                        dialogInterface.dismiss()
+                    }
+                    .show()
+            },3000)
         }
 
     }
