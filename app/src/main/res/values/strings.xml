@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Arduino Watson</string>
+    <string name="gravar">Gravar</string>
+    <string name="saySomething">Diga alguma coisa!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_connection">Conexão</string>
+    <string name="title_commands">Comando de voz</string>
+    <string name="encontrar_arduino">Encontrar Arduino</string>
 </resources>
